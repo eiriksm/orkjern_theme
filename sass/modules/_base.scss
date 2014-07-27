@@ -24,6 +24,7 @@ p {
   max-width: 640px;
   margin: auto;
   padding: 10px;
+  overflow: hidden;
 }
 .climacon_component-fill  {
   fill: $cloud-color;
@@ -74,6 +75,7 @@ h1 {
 pre, code {
   font-family: monospace;
   background: #eee;
+  overflow-x: scroll;
 }
 gist {
   display: none;
