@@ -9,7 +9,6 @@ function view(ctrl) {
       <div class="node__meta">
         Submitted {item.created}
       </div>
-      <div class="node-content" property="schema:text">{m.trust(item.body)}</div>
       <div class="read-more"><a href={item.path} config={m.route}>Read more</a></div>
       {m.trust(item.field_tags)}
     </article>
