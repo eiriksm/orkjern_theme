@@ -16,10 +16,6 @@ p {
   height: 310px;
 }
 
-// Not pretty I guess. But I am no css wizard...
-#main-wrapper {
-  margin-top: -80px;
-}
 #page-wrapper {
   max-width: 640px;
   margin: auto;
@@ -39,8 +35,7 @@ p {
 }
 #header {
   position: relative;
-  height: 220px;
-  z-index: -2;
+  height: 140px;
 }
 .logo-wrapper {
   text-align: center;
