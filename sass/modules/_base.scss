@@ -13,8 +13,7 @@ p {
   margin: 1em 0;
 }
 .climacon {
-  width: 310px;
-  margin-top: -172px;
+  height: 310px;
 }
 
 // Not pretty I guess. But I am no css wizard...
@@ -33,10 +32,18 @@ p {
   margin: auto;
   position: relative;
   z-index: -2;
+  position: absolute;
+  width: 100%;
+  top: -100px;
+}
+#header {
+  position: relative;
+  height: 220px;
 }
 .logo-wrapper {
   text-align: center;
   .letters {
+    position: absolute;
     display: block;
     line-height: 1;
     padding-top: 40px;
@@ -44,6 +51,9 @@ p {
     margin: auto;
     z-index: 1;
     color: #fff;
+    top: -10px;
+    width: 100%;
+    left: -26px;
 
   }
 }
