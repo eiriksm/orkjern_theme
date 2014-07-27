@@ -43,6 +43,7 @@ app.controller = function() {
     ctrl.raw = data;
     setTimeout(gist, 1);
     var disqus_shortname = 'orkjblog';
+    var disqus_identifier = window.location.pathname;
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
