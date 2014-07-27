@@ -9,7 +9,9 @@ a {
   color: $first;
   border-bottom: 1px solid lighten($first, 20%);
 }
-
+p {
+  margin: 1em 0;
+}
 .climacon {
   width: 310px;
   margin-top: -172px;
