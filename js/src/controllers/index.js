@@ -17,16 +17,14 @@ app.controller = function() {
           var link = taxes[i];
           link.onclick = function() {
             var url = link.getAttribute('href');
-            console.log(link)
-            console.log(url)
             if (url) {
               m.route(url);
+              return false;
             }
-            return false;
-          }
+          };
         }
       }
-    }
+    };
     // Wait for a while to try to attach taxonomy listeners.
     setTimeout(taxAttach, 2);
   });
