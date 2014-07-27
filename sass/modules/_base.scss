@@ -1,0 +1,71 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  color: $cloud-color;
+  line-height: 1.5;
+  font-size: 20px;
+}
+a {
+  text-decoration: none;
+  color: $first;
+  border-bottom: 1px solid lighten($first, 20%);
+}
+
+.climacon {
+  width: 310px;
+  margin-top: -172px;
+}
+
+// Not pretty I guess. But I am no css wizard...
+#main-wrapper {
+  margin-top: -80px;
+}
+#page-wrapper {
+  max-width: 640px;
+  margin: auto;
+  padding: 10px;
+}
+.climacon_component-fill  {
+  fill: $cloud-color;
+}
+.svg-wrapper {
+  margin: auto;
+  position: relative;
+  z-index: -2;
+}
+.logo-wrapper {
+  text-align: center;
+  .letters {
+    display: block;
+    line-height: 1;
+    padding-top: 40px;
+    padding-right: 52px;
+    margin: auto;
+    z-index: 1;
+    color: #fff;
+
+  }
+}
+.climacon_wrapperComponent-lightning {
+  animation: lightning 3s infinite;
+}
+@keyframes lightning {
+  from {
+    opacity:1;
+  }
+  to {
+    opacity:0;
+  }
+}
+h1 {
+  font-size: 2em;
+}
+pre, code {
+  font-family: monospace;
+  background: #eee;
+}
+gist {
+  display: none;
+  &.processed {
+    display: block;
+  }
+}

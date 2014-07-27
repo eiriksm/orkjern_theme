@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * html template for orkjern_theme.
+#}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    {{ page.head }}
+    <title>{{ head_title }}</title>
+  </head>
+  {% if not has_css %}
+    <!-- smoosh -->
+    <link rel="stylesheet" href="../../build/app.min.css">
+    <!-- endsmoosh -->
+  {% endif %}
+  <body{{ attributes }}>
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      {{ 'Skip to main content'|t }}
+    </a>
+    {{ page_top }}
+    {{ page.content }}
+    {{ page_bottom }}
+    {% if has_css %}
+      <!-- smoosh -->
+      <script type="text/javascript" src="../../build/hascache.min.js"></script>
+      <!-- endsmoosh -->
+    {% else %}
+      <!-- smoosh -->
+      <script type="text/javascript" src="../../build/nocache.min.js"></script>
+      <!-- endsmoosh -->
+    {% endif %}
+  </body>
+</html>
