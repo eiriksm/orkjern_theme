@@ -16,7 +16,7 @@ app.controller = function() {
         for (var i = 0, len = taxes.length; i < len; i++) {
           var link = taxes[i];
           link.onclick = function() {
-            var url = link.getAttribute('href');
+            var url = this.getAttribute('href');
             if (url) {
               m.route(url);
               return false;
