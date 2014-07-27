@@ -44,7 +44,7 @@ function init() {
 
   // Hijack the links coming from the logo also.
   var l = document.getElementById('logo');
-  l.onclick = function(e) {
+  l.onclick = function() {
     // Only redirect if we are not already on the front page.
     var url = m.route();
     if (url !== '/') {

@@ -9,6 +9,26 @@ app.controller = function() {
   http('node')
   .then(function(data) {
     ctrl.nodes = data;
+    // Attach event listeners on all taxonomy links.
+    var taxAttach = function() {
+      if (document && document.querySelectorAll) {
+        var taxes = document.querySelectorAll('.field-type-taxonomy-term-reference a');
+        for (var i = 0, len = taxes.length; i < len; i++) {
+          var link = taxes[i];
+          link.onclick = function() {
+            var url = link.getAttribute('href');
+            console.log(link)
+            console.log(url)
+            if (url) {
+              m.route(url);
+            }
+            return false;
+          }
+        }
+      }
+    }
+    // Wait for a while to try to attach taxonomy listeners.
+    setTimeout(taxAttach, 2);
   });
 };
 app.view = indexView;
