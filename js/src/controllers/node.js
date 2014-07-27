@@ -20,7 +20,6 @@ app.controller = function() {
     }
     url = 'node/' + nid;
   }
-
   http(url)
   .then(function success(data) {
     var cr = new Date(data.created[0].value * 1000);
@@ -42,11 +41,12 @@ app.controller = function() {
     }
     ctrl.raw = data;
     setTimeout(gist, 1);
-    var disqus_shortname = 'orkjblog';
+    window.disqus_shortname = 'orkjblog';
+    delete window.disqus_identifier;
     window.disqus_identifier = window.location.pathname;
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = '//' + window.disqus_shortname + '.disqus.com/embed.js?url=' + url;
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   }, function error(data) {
