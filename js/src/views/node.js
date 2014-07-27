@@ -15,6 +15,7 @@ function view(ctrl) {
       m("div", {class:"image"}, [
         m("img", {src:ctrl.image()} )
       ])
-    ])
+    ]),
+    m("div", {id:"disqus_thread"})
   ])
 }

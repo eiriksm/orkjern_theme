@@ -16,5 +16,6 @@ function view(ctrl) {
         <img src={ctrl.image()} />
       </div>
     </article>
+    <div id="disqus_thread"></div>
   </div>
 }

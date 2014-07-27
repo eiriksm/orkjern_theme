@@ -51,7 +51,7 @@ function scriptTask(path, filename) {
   return browserify(path)
     .bundle()
     .pipe(source(filename))
-    //.pipe(streamify(uglify()))
+    .pipe(streamify(uglify()))
     .pipe(gulp.dest('build/'));
 }
 

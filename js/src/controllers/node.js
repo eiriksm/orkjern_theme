@@ -26,7 +26,6 @@ app.controller = function() {
     var cr = new Date(data.created[0].value * 1000);
     ctrl.title(data.title[0].value);
     ctrl.body(data.body[0].value);
-    console.log(data.body[0].value)
     ctrl.submitted('Submitted ' + cr.toLocaleDateString());
     // Try to find some fields we need.
     // @todo. This should be handled better, and without a loop.
@@ -43,6 +42,12 @@ app.controller = function() {
     }
     ctrl.raw = data;
     setTimeout(gist, 1);
+    var disqus_shortname = 'orkjblog';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
   }, function error(data) {
     if (data === 404) {
       ctrl.title('404 not found!');
