@@ -3,7 +3,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var smoosher = require('gulp-smoosher');
-var clean = require('gulp-clean');
+var rimraf = require('rimraf');
 var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
@@ -55,9 +55,8 @@ function scriptTask(path, filename) {
     .pipe(gulp.dest('build/'));
 }
 
-gulp.task('clean', function() {
-  return gulp.src('build', {read: false})
-    .pipe(clean());
+gulp.task('clean', function(cb) {
+  return rimraf('./build', cb);
 });
 
 // Watch
