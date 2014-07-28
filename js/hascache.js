@@ -23,5 +23,5 @@
     window.location.reload();
   }
   // Init the app.
-  util.init();
+  util.init(window);
 }());

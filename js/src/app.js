@@ -11,14 +11,15 @@ module.exports = {
 };
 
 function appendCss(append, window) {
-  var head = document.getElementsByTagName('head')[0];
-  var elem = document.createElement('style');
+  var d = window.document;
+  var head = d.getElementsByTagName('head')[0];
+  var elem = d.createElement('style');
   elem.type = 'text/css';
   if (elem.styleSheet){
     elem.styleSheet.cssText = append;
   }
   else {
-    elem.appendChild(document.createTextNode(append));
+    elem.appendChild(d.createTextNode(append));
   }
   return head.appendChild(elem);
 }
@@ -27,12 +28,21 @@ function getLsOrKickOut(window){
   var ls = window.localStorage;
   if (!ls) {
     // Christ. No localstorage. The following is deserved:
-    alert('Your browser is bad, and you should feel bad. You are not welcome here. You will be redirected to a place where you can upgrade your browser.');
+    window.alert('Your browser is bad, and you should feel bad. You are not welcome here. You will be redirected to a place where you can upgrade your browser.');
     return window.location.href = 'http://browsehappy.com/';
   }
   return ls;
 }
-function init() {
+function init(window) {
+  var app = {
+    window: window,
+    m: m
+  };
+  // Ugly stuff.
+  if (window.test) {
+    m.deps(window);
+  }
+  var d = window.document;
   m.route.mode = 'pathname';
   var routeConf = {};
   routeConf['/'] = index;
@@ -40,10 +50,10 @@ function init() {
   routeConf['/:alias'] = node;
   routeConf['/node/:nid'] = node;
   routeConf['/taxonomy/term/:tid'] = taxonomy;
-  m.route(document.getElementById('main-wrapper'), '/', routeConf);
+  m.route(d.getElementById('main-wrapper'), '/', routeConf);
 
   // Hijack the links coming from the logo also.
-  var l = document.getElementById('logo');
+  var l = d.getElementById('logo');
   l.onclick = function() {
     // Only redirect if we are not already on the front page.
     var url = m.route();
@@ -52,4 +62,5 @@ function init() {
     }
     return false;
   };
+  return app;
 }

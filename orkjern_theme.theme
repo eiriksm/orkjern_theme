@@ -1,1 +1,12 @@
 <?php
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function orkjern_theme_preprocess_html(&$vars) {
+  $config = \Drupal::config('orkjern_theme');
+  $ga_id = $config->get('ga_id');
+  if ($ga_id) {
+    $vars['ga_id'] = $ga_id;
+  }
+}

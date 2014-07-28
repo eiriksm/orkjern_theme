@@ -8,5 +8,5 @@
   ls.setItem('orkjern_theme_cache', JSON.stringify(data));
   document.cookie = "ORKJERN_THEME_CACHE={{ cache_key }}";
   // Init the app.
-  util.init();
+  util.init(window);
 }());

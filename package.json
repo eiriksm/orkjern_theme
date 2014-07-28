@@ -20,7 +20,6 @@
     "browserify": "^5.8.0",
     "gulp": "^3.8.6",
     "gulp-autoprefixer": "0.0.8",
-    "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.3.4",
     "gulp-minify-css": "^0.3.7",
     "gulp-plumber": "^0.6.4",
@@ -30,10 +29,13 @@
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^0.3.1",
     "gulp-util": "^3.0.0",
+    "istanbul": "^0.3.0",
     "mithril": "^0.1.19",
-    "mocha": "^1.21.0",
+    "mocha": "^1.21.1",
     "msx": "^0.1.3",
+    "rimraf": "^2.2.8",
     "run-sequence": "^0.3.6",
+    "should": "^4.0.4",
     "through2": "^0.5.1",
     "vinyl-source-stream": "^0.1.1"
   }
