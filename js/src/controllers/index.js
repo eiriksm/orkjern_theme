@@ -27,6 +27,15 @@ app.controller = function() {
     };
     // Wait for a while to try to attach taxonomy listeners.
     setTimeout(taxAttach, 2);
+    // Try to find comment count.
+    window.disqus_shortname = '{{ disqus_shortname }}';
+    window.DISQUSWIDGETS = undefined;
+    (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = 'http://' + window.disqus_shortname + '.disqus.com/count.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
   });
 };
 app.view = indexView;

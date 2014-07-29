@@ -1,7 +1,13 @@
+.views-field-path {
+  display: none;
+}
+
+.views-field-title,
 h2,
 h2.node__title {
   font-size: 1.5em;
   margin-top: 1em;
+  span,
   a {
     color: $cloud-color;
     border-bottom: 1px solid #fff;
@@ -30,6 +36,7 @@ ul {
 article {
   margin: 2em 0;
 }
+.views-field-view-node,
 .read-more {
   a {
     background: $first;

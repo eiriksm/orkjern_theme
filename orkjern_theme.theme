@@ -9,4 +9,8 @@ function orkjern_theme_preprocess_html(&$vars) {
   if ($ga_id) {
     $vars['ga_id'] = $ga_id;
   }
+  $disqus_shortname = $config->get('disqus_shortname');
+  if ($disqus_shortname) {
+    $vars['disqus_shortname'] = $disqus_shortname;
+  }
 }

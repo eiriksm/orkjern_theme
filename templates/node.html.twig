@@ -71,7 +71,7 @@
  * @see template_preprocess_node()
  */
 #}
-<article class="{{ attributes.class }} clearfix"{{ attributes|without('class') }}>
+<article class="node node--view-mode-full clearfix"{{ attributes|without('class') }}>
 
   <header>
     {{ title_prefix }}
@@ -84,11 +84,9 @@
 
     {% if display_submitted %}
       <div class="node__meta">
-        {{ author_picture }}
-        <span{{ author_attributes }}>
-          {% trans %}Submitted by {{ author_name|passthrough }} on {{ date }}{% endtrans %}
+        <span>
+          {% trans %}Submitted by on {{ date }}{% endtrans %}
         </span>
-        {{ metadata }}
       </div>
     {% endif %}
   </header>
@@ -96,11 +94,5 @@
   <div class="node__content clearfix {{ content_attributes.class }}"{{ content_attributes|without('class') }}>
     {{ content|without('comment', 'links') }}
   </div>
-
-  {% if content.links %}
-    <div class="node__links">
-      {{ content.links }}
-    </div>
-  {% endif %}
 
 </article>

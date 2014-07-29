@@ -10,6 +10,7 @@ function view(ctrl) {
         "Submitted ", item.created
       ]),
       m("div", {class:"read-more"}, [m("a", {href:item.path, config:m.route}, ["Read more"])]),
+      m("div", {class:"comment-count"}, [m("a", {'data-disqus-identifier':item.path, href:item.path, config:m.route})]),
       m.trust(item.field_tags)
     ])
   }

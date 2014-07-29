@@ -3,6 +3,7 @@ var m = require('mithril');
 var nodeView = require('../views/node');
 var http = require('../http');
 var gist = require('../gist');
+var disqus = require('../disqus');
 
 var app = {};
 app.controller = function() {
@@ -43,27 +44,10 @@ app.controller = function() {
     }
     ctrl.raw = data;
     setTimeout(gist, 1);
-    window.disqus_shortname = 'orkjblog';
-    var disqus = function() {
-      (function() {
-        window.disqus_identifier = m.route();
-        if (window.disqus_loaded) {
-          DISQUS.reset({
-            reload: true,
-            config: function () {
-              this.page.identifier = window.disqus_identifier;
-              this.page.url = window.location.origin + window.disqus_identifier;
-            }
-          });
-          return;
-        }
-        window.disqus_loaded = true;
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + window.disqus_shortname + '.disqus.com/embed.js?url=' + url;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    };
-    setTimeout(disqus, 1);
+    window.disqus_shortname = '{{ disqus_shortname }}';
+    setTimeout(function() {
+      disqus(window);
+    }, 1);
   }, function error(data) {
     if (data === 404) {
       ctrl.title('404 not found!');

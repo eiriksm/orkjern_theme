@@ -10,6 +10,7 @@ function view(ctrl) {
         Submitted {item.created}
       </div>
       <div class="read-more"><a href={item.path} config={m.route}>Read more</a></div>
+      <div class="comment-count"><a data-disqus-identifier={item.path} href={item.path} config={m.route}></a></div>
       {m.trust(item.field_tags)}
     </article>
   }
