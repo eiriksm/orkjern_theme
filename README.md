@@ -5,8 +5,12 @@ orkjern_theme
 
 orkjern_theme used on orkjern.com
 
-## Quirks
+## Tweaks
 To add google analytics to the site, add a line in your settings.php that looks something like this:
 ```php
 $config['orkjern_theme']['ga_id'] = 'UA-XXXXXXX-Y';
+```
+To add disqus comments to your site, add a line in your settings.php that looks something like this:
+```php
+$config['orkjern_theme']['disqus_shortname'] = 'myshortname';
 ```
