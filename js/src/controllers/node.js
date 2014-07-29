@@ -16,6 +16,7 @@ app.controller = function() {
   // See how we should construct the request.
   var url = m.route.param('alias');
   var nid = m.route.param('nid');
+  var comment = m.route.param('comment');
   if (!url) {
     if (!nid) {
       m.route('/');
