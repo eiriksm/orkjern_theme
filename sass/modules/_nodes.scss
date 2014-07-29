@@ -38,6 +38,7 @@ article {
 }
 .views-field-view-node,
 .read-more {
+  display: inline-block;
   a {
     background: $first;
     padding: 5px;
@@ -70,4 +71,31 @@ article {
       }
     }
   }
+}
+
+.comment-count {
+  position: relative;
+  background-color: $third;
+  margin: 0;
+  padding: 5px 0;
+  text-align:center;
+  width: 110px;
+  display: inline-block;
+  margin-left: 15px;
+  a {
+    border: 0;
+  }
+}
+.comment-count:after {
+  position: absolute;
+  display: block;
+  content: "";
+  border-color: transparent $third transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  height:0;
+  width:0;
+  position:absolute;
+  bottom: 9px;
+  left: -19px;
 }
