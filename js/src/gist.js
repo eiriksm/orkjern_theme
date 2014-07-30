@@ -1,4 +1,5 @@
-module.exports = function() {
+module.exports = function(window) {
+  var document = window.document;
   var gistIt = function(element, gistId) {
     var callbackName = 'gist_callback' + Math.floor(Math.random() * 1000);
     window[callbackName] = function (gistData) {

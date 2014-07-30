@@ -1,8 +1,9 @@
 var disqus = function(window) {
+  var document = window.document;
   (function() {
     window.disqus_identifier = m.route();
     if (window.disqus_loaded) {
-      DISQUS.reset({
+      window.DISQUS.reset({
         reload: true,
         config: function () {
           this.page.identifier = window.disqus_identifier;
