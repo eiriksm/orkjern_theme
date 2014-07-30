@@ -11,12 +11,23 @@ app.controller = function() {
   this.title = m.prop('');
   this.body = m.prop('Loading...');
   this.raw = m.prop({});
-  this.image = m.prop('');
+  this.image = m.prop('about:blank');
   ctrl.submitted = m.prop('');
+  var image;
+
+  // Do not auto-play the animated gif.
+  this.imageClass = m.prop('noplay');
+  this.toggleImageClass = function() {
+    m.startComputation();
+    ctrl.imageClass('play');
+    if (image) {
+      ctrl.image(image);
+    }
+    m.endComputation();
+  };
   // See how we should construct the request.
   var url = m.route.param('alias');
   var nid = m.route.param('nid');
-  var comment = m.route.param('comment');
   if (!url) {
     if (!nid) {
       m.route('/');
@@ -39,12 +50,14 @@ app.controller = function() {
       if (data._links.hasOwnProperty(prop)) {
         // We are looking for these 2 fields:
         if (prop.indexOf('image')) {
-          ctrl.image(data._links[prop][0].href);
+          image = data._links[prop][0].href;
         }
       }
     }
     ctrl.raw = data;
-    setTimeout(gist, 1);
+    setTimeout(function() {
+      gist(window);
+    }, 1);
     window.disqus_shortname = '{{ disqus_shortname }}';
     setTimeout(function() {
       disqus(window);
@@ -53,6 +66,7 @@ app.controller = function() {
     if (data === 404) {
       ctrl.title('404 not found!');
       ctrl.body('The page you are looking for is nowhere to be found. Real sorry about that!');
+      ctrl.imageClass('hide');
     }
     if (data === 403) {
       ctrl.title('403 Forbidden!');

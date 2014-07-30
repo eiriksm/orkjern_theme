@@ -12,8 +12,9 @@ function view(ctrl) {
       m("div", {class:"node__content clearfix " }, [
         m("p", [m.trust(ctrl.body())])
       ]),
-      m("div", {class:"image"}, [
-        m("img", {src:ctrl.image()} )
+      m("div", {class:ctrl.imageClass() + ' image', onclick:ctrl.toggleImageClass}, [
+        m("img", {src:ctrl.image()} ),
+        m("h2", ["Play"])
       ])
     ]),
     m("div", {id:"disqus_thread"})

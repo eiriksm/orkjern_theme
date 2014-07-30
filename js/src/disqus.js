@@ -1,6 +1,6 @@
 var disqus = function(window) {
   var document = window.document;
-  (function() {
+  var init = function() {
     window.disqus_identifier = m.route();
     if (window.disqus_loaded) {
       window.DISQUS.reset({
@@ -16,7 +16,22 @@ var disqus = function(window) {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = '//' + window.disqus_shortname + '.disqus.com/embed.js?url=' + window.disqus_identifier;
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+  };
+  var disqus_el = document.getElementById('disqus_thread');
+  var inited = false;
+  window.onscroll = function() {
+    if (inited) {
+      return;
+    }
+    // See if we can determine something about when this element is in sight.
+    if (window.scrollY && disqus_el.offsetTop && window.innerHeight) {
+      // Visible within 50 px.
+      if (window.scrollY + window.innerHeight + 50 > disqus_el.offsetTop) {
+        inited = true;
+        init();
+      }
+    }
+  };
 };
 
 module.exports = disqus;

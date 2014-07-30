@@ -12,8 +12,9 @@ function view(ctrl) {
       <div class="node__content clearfix ">
         <p>{m.trust(ctrl.body())}</p>
       </div>
-      <div class="image">
+      <div class={ctrl.imageClass() + ' image'} onclick={ctrl.toggleImageClass}>
         <img src={ctrl.image()} />
+        <h2>Play</h2>
       </div>
     </article>
     <div id="disqus_thread"></div>

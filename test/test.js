@@ -79,7 +79,8 @@ describe('disqus.js', function() {
     var mockWindow = new mocker.Window().window;
     mockWindow.disqus_shortname = 'testtest' + Math.random() * 1000;
     disqus(mockWindow);
-    mockWindow.mockElements[0].src.should.equal('//' + mockWindow.disqus_shortname + '.disqus.com/embed.js?url=/');
+    mockWindow.onscroll();
+    mockWindow.mockElements[1].src.should.equal('//' + mockWindow.disqus_shortname + '.disqus.com/embed.js?url=/');
     var hasReset = false;
     mockWindow.DISQUS = {
       page: {},
@@ -90,6 +91,7 @@ describe('disqus.js', function() {
       }
     };
     disqus(mockWindow);
+    mockWindow.onscroll();
     hasReset.should.equal(true);
   });
 });

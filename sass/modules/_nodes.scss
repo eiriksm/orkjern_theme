@@ -72,6 +72,37 @@ article {
     }
   }
 }
+.image {
+  text-align: center;
+  margin: auto;
+  &:hover {
+    cursor: pointer;
+  }
+  &.noplay {
+    background: $fourth;
+    border-radius: 3px;
+    height: 100px;
+    width: 200px;
+    img {
+      display: none;
+    }
+    h2 {
+      display: block;
+      margin: .6em 0;
+      color: $first;
+      padding: 5px 10px;
+      border-radius: 3px;
+      background: #fff;
+      display: inline-block;
+    }
+  }
+  &.hide {
+    display: none;
+  }
+  h2 {
+    display: none;
+  }
+}
 
 .comment-count {
   display: inline-block;

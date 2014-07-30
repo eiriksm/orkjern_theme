@@ -3,6 +3,7 @@ function MockElement(type) {
     id: Math.random() * 1000,
     type: type,
     childNodes: [],
+    offsetTop: 10,
     appendChild: function(el) {
 
       this.childNodes.push(el);
@@ -73,6 +74,8 @@ function MockWindow() {
       pathname: "",
       hash: ""
     },
+    scrollY: 1000,
+    innerHeight: 100,
     test: true,
     history: {
       pushState: function(data, title, url) {
