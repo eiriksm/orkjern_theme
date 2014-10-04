@@ -8,8 +8,6 @@ stylesheets:
     - css/style.css
 
 regions:
-  header: Header
   messages: Messages
   content: Content
   footer: Footer
-
