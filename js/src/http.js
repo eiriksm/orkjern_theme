@@ -16,6 +16,11 @@ function http(url) {
     // Append a query string to make sure browser is not caching the URL.
     url: '/' + url + '?json',
     config: xhrConfig,
-    extract: nonJsonErrors
+    extract: nonJsonErrors,
+    // Wrap around the standard deserialize function to avoid that Mithril is
+    // setting the wrong headers.
+    deserialize: function(t) {
+      return JSON.parse(t);
+    }
   });
 }
