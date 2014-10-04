@@ -13,15 +13,16 @@ app.controller = function() {
     var taxAttach = function() {
       if (document && document.querySelectorAll) {
         var taxes = document.querySelectorAll('.field-type-taxonomy-term-reference a');
+        var linkfunction = function() {
+          var url = this.getAttribute('href');
+          if (url) {
+            m.route(url);
+            return false;
+          }
+        };
         for (var i = 0, len = taxes.length; i < len; i++) {
           var link = taxes[i];
-          link.onclick = function() {
-            var url = this.getAttribute('href');
-            if (url) {
-              m.route(url);
-              return false;
-            }
-          };
+          link.onclick = linkfunction;
         }
       }
     };
