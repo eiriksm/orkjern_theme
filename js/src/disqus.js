@@ -1,6 +1,9 @@
 var disqus = function(window) {
   var document = window.document;
   var init = function() {
+    if (!window.disqus_shortname) {
+      return;
+    }
     window.disqus_identifier = m.route();
     if (window.disqus_loaded) {
       window.DISQUS.reset({
