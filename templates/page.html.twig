@@ -27,7 +27,9 @@
                   </g>
               </svg>
             </div>
-            <div class="letters">ORKJ<br>BLOG</div>
+            {% if site_name %}
+              <div class="letters">{{ site_name }}</div>
+            {% endif %}
          </a>
       </div>
     {% endif %}
