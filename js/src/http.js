@@ -20,7 +20,14 @@ function http(url) {
     // Wrap around the standard deserialize function to avoid that Mithril is
     // setting the wrong headers.
     deserialize: function(t) {
-      return JSON.parse(t);
+      var j;
+      try {
+        j = JSON.parse(t);
+      }
+      catch(e) {
+        j = '';
+      }
+      return j;
     }
   });
 }

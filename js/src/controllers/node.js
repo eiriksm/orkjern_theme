@@ -37,6 +37,9 @@ app.controller = function() {
   }
   http(url)
   .then(function success(data) {
+    if (!data) {
+      return;
+    }
     var cr = new Date(data.created[0].value * 1000);
     ctrl.title(data.title[0].value);
     ctrl.body(data.body[0].value);

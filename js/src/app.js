@@ -54,13 +54,15 @@ function init(window) {
 
   // Hijack the links coming from the logo also.
   var l = d.getElementById('logo');
-  l.onclick = function() {
-    // Only redirect if we are not already on the front page.
-    var url = m.route();
-    if (url !== '/') {
-      m.route('/');
-    }
-    return false;
-  };
+  if (l) {
+    l.onclick = function() {
+      // Only redirect if we are not already on the front page.
+      var url = m.route();
+      if (url !== '/') {
+        m.route('/');
+      }
+      return false;
+    };
+  }
   return app;
 }

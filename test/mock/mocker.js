@@ -2,17 +2,23 @@ function MockElement(type) {
   return {
     id: Math.random() * 1000,
     type: type,
+    nodeName: type.toUpperCase(),
+    attributes: {
+      type: type,
+      0: {
+        nodeValue: type
+      }
+    },
     childNodes: [],
     offsetTop: 10,
     appendChild: function(el) {
-
       this.childNodes.push(el);
       el.parentNode = this;
-      return this;
+      return el;
     },
-    attributes: {},
     setAttribute: function(attr, val) {
       this.attributes[attr] = val;
+      this[attr] = val;
     },
     removeChild: function(el) {
       for (var i = 0, len = this.childNodes.length; i < len; i++) {
@@ -23,7 +29,7 @@ function MockElement(type) {
     }
   };
 }
-function MockWindow() {
+function MockWindow(forceFake) {
   var mockWindow;
   this.window = {
     mockElements: [],
@@ -46,7 +52,7 @@ function MockWindow() {
         return el;
       },
       createTextNode: function(text) {
-        return {text: text};
+        return {wholeText: text};
       }
     },
     XMLHttpRequest: function() {
@@ -70,9 +76,10 @@ function MockWindow() {
       return new Request();
     },
     location: {
-      search: "",
-      pathname: "",
-      hash: ""
+      search: '',
+      pathname: '',
+      hash: '',
+      protocol: ''
     },
     scrollY: 1000,
     innerHeight: 100,
@@ -86,6 +93,9 @@ function MockWindow() {
       }
     }
   };
+  if (!forceFake && typeof(window) != 'undefined') {
+    this.window = window;
+  }
   mockWindow = this.window;
 }
 exports.Window = MockWindow;
