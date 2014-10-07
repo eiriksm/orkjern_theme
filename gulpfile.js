@@ -15,6 +15,20 @@ var through = require('through2');
 var msx = require('msx');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
+var karma = require('karma').server;
+
+/**
+ * Run test once and exit
+ */
+gulp.task('testscript', function (done) {
+  return scriptTask('./test/test.js', 'test.js');
+});
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done);
+});
 
 gulp.task('inline', function() {
   return gulp.src('templates/uncompiled/*.html')
@@ -92,6 +106,12 @@ gulp.task('build', function(callback) {
               'msx',
               ['cachescript', 'nocachescript', 'css'],
               'inline',
+              callback);
+});
+gulp.task('browsertest', function(callback) {
+  runSequence('clean',
+              'testscript',
+              'test',
               callback);
 });
 
