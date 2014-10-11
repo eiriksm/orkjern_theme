@@ -96,6 +96,18 @@ function MockWindow(forceFake) {
   if (!forceFake && typeof(window) != 'undefined') {
     this.window = window;
   }
+  else if (typeof(window) === 'undefined') {
+    // Trick browserify.
+    var r = {
+      r: require
+    };
+    var jsdom = r.r('jsdom').jsdom;
+    var doc = jsdom();
+    var loc = this.window.location;
+    this.window = doc.parentWindow;
+    this.window.location = loc;
+    this.window.test = true;
+  }
   mockWindow = this.window;
 }
 exports.Window = MockWindow;

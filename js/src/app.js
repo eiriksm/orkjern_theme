@@ -1,7 +1,7 @@
 var m = require('mithril');
 
 var node = require('./controllers/node');
-var index = require('./controllers/index');
+var Index = require('./controllers/index');
 var taxonomy = require('./controllers/taxonomy');
 
 module.exports = {
@@ -45,6 +45,7 @@ function init(window) {
   var d = window.document;
   m.route.mode = 'pathname';
   var routeConf = {};
+  var index = new Index(window);
   routeConf['/'] = index;
   routeConf['/node'] = index;
   routeConf['/:alias'] = node;

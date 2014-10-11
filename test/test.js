@@ -17,18 +17,12 @@ describe('app.js functions', function() {
     var test = app.appendCss(randomString1, mockWindow);
     test.nodeName.toLowerCase().should.equal('style');
     test.childNodes.length.should.equal(1);
-    test.childNodes[0].wholeText.should.equal(randomString1);
-    // Just for coverage, we do this:
-    if (!mockWindow.navigator) {
-      mockWindow.document.createElement = function(type) {
-        var el = new mocker.MockElement(type);
-        el.styleSheet = {};
-        return el;
-      };
-      var randomString2 = 'teststring' + Math.random() * 1000;
-      var test2 = app.appendCss(randomString2, mockWindow);
-      test2.styleSheet.cssText.should.equal(randomString2);
+    // So a little bit difference between jsdom and browser.
+    var property = '__nodeValue';
+    if (typeof(window) != 'undefined') {
+      property = 'wholeText';
     }
+    test.childNodes[0][property].should.equal(randomString1);
   });
 
   it('Should return the expected value from getLsOrKickOut', function() {
@@ -51,25 +45,14 @@ describe('app.js functions', function() {
 
   it('Should do the expected on init', function() {
     var mockWindow = new mocker.Window().window;
-    var a = app.init(mockWindow);
-    // See that some values are set as expected.
-    if (typeof(window) === 'undefined') {
-      a.window.mockElements[a.window.mockElements.length - 2].id.should.equal('main-wrapper');
-    }
+    var r = mockWindow.document.createElement('div');
+    r.id = 'main-wrapper';
+    mockWindow.document.getElementsByTagName('body')[0].appendChild(r);
+    app.init(mockWindow);
   });
 
   it('Should increase coverage with a few random tests', function() {
-    var mockWindow = new mocker.Window(true).window;
-    var a = app.init(mockWindow);
-    a.m.route().should.equal('/');
-    var r = a.window.mockElements[a.window.mockElements.length - 1].onclick();
-    a.m.route().should.equal('/');
-    r.should.equal(false);
-    a.m.route('/node/1');
-    a.m.route().should.equal('/node/1');
-    r = a.window.mockElements[a.window.mockElements.length - 1].onclick();
-    r.should.equal(false);
-    a.m.route().should.equal('/');
+    // @todo.
   });
 });
 
@@ -82,18 +65,14 @@ describe('disqus.js', function() {
     var mockWindow = new mocker.Window().window;
     var de = mockWindow.document.createElement('div');
     de.id = 'disqus_thread';
+    de.offsetTop = 90;
     mockWindow.document.getElementsByTagName('body')[0].appendChild(de);
     mockWindow.disqus_shortname = 'testtest' + Math.random() * 1000;
     disqus(mockWindow);
     mockWindow.scrollY = 1000;
     mockWindow.onscroll();
-    var el;
-    if (typeof(window) === 'undefined') {
-      el = mockWindow.mockElements[3];
-    }
-    else {
-      el = document.getElementsByTagName('script')[0];
-    }
+
+    var el = mockWindow.document.getElementsByTagName('script')[0];
     el.src.should.equal(mockWindow.location.protocol + '//' + mockWindow.disqus_shortname + '.disqus.com/embed.js?url=' + m.route());
     var hasReset = false;
     mockWindow.DISQUS = {
@@ -130,24 +109,16 @@ describe('gist.js', function() {
         cb = prop;
       }
     }
-    var ge, se;
-    var gid;
-    if (typeof(window) === 'undefined') {
-      ge = mockWindow.mockElements[0];
-      se = mockWindow.mockElements[3];
-      gid = 'undefined';
-    }
-    else {
-      ge = mockWindow.document.getElementsByTagName('gist')[0];
-      var s = mockWindow.document.getElementsByTagName('script');
-      for (var i = 0, len = s.length; i < len; i++) {
-        var n = s[i];
-        if (n.src.indexOf('github')) {
-          se = n;
-        }
+
+    var ge = mockWindow.document.getElementsByTagName('gist')[0];
+    var s = mockWindow.document.getElementsByTagName('script');
+    for (var i = 0, len = s.length; i < len; i++) {
+      var n = s[i];
+      if (n.src.indexOf('github')) {
+        se = n;
       }
-      gid = 123;
     }
+    var gid = 123;
     ge.nodeName.toLowerCase().should.equal('gist');
     se.nodeName.toLowerCase().should.equal('script');
     se.src.should.equal('https://gist.github.com/' + gid + '.json?callback=' + cb);
@@ -157,9 +128,6 @@ describe('gist.js', function() {
     var preLength = mockWindow.document.body.childNodes.length;
     mockWindow[cb]({stylesheet: style, div: div});
     mockWindow.document.body.childNodes.length.should.equal(preLength - 1);
-    if (typeof(window) === 'undefined') {
-      ge = mockWindow.mockElements[2];
-    }
-    ge.innerHTML.should.equal('<link rel="stylesheet" href="' + style + '">' + div);
+    ge.innerHTML.should.equal('<link href="' + style + '" rel="stylesheet">' + div);
   });
 });

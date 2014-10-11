@@ -3,6 +3,7 @@
 module.exports = view;
 
 function view(ctrl) {
+  var window = ctrl.window;
   var urlPrefix = window.location.host;
   var renderListItem = function(item) {
     return m("article", {class:"node node--view-mode-teaser clearfix", about:"/aa-cc", typeof:"schema:Article"}, [

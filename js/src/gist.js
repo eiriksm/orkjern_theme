@@ -6,7 +6,7 @@ module.exports = function(window) {
     script.setAttribute('src', 'https://gist.github.com/' + gistId + '.json?callback=' + callbackName);
     window[callbackName] = function (gistData) {
         delete window[callbackName];
-        var html = '<link rel="stylesheet" href="' + (gistData.stylesheet) + '">';
+        var html = '<link href="' + (gistData.stylesheet) + '" rel="stylesheet">';
         html += gistData.div;
         element.innerHTML = html;
         script.parentNode.removeChild(script);
