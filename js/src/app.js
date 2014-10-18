@@ -1,6 +1,7 @@
 var m = require('mithril');
 
 var Booter = require('./booter');
+var disqus = require('./disqus');
 
 var node = require('./controllers/node');
 var Index = require('./controllers/index');
@@ -53,6 +54,7 @@ function init(window) {
   };
   app.booter = new Booter(app);
   app.booter.attach();
+  disqus(app.window);
   // Try to find comment count.
   window.disqus_shortname = '{{ disqus_shortname }}';
   // That is... unless there is no disqus set up for this site.
