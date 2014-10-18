@@ -23,6 +23,9 @@ var disqus = function(window) {
   var disqus_el = document.getElementById('disqus_thread');
   var inited = false;
   window.onscroll = function() {
+    if (!disqus_el) {
+      disqus_el = document.getElementById('disqus_thread');
+    }
     if (inited) {
       return;
     }
