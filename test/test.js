@@ -72,7 +72,11 @@ describe('disqus.js', function() {
     mockWindow.scrollY = 1000;
     mockWindow.onscroll();
 
-    var el = mockWindow.document.getElementsByTagName('script')[0];
+    var elNo = 0;
+    if (typeof(window) != 'undefined') {
+      elNo = 1;
+    }
+    var el = mockWindow.document.getElementsByTagName('script')[elNo];
     el.src.should.equal(mockWindow.location.protocol + '//' + mockWindow.disqus_shortname + '.disqus.com/embed.js?url=' + m.route());
     var hasReset = false;
     mockWindow.DISQUS = {

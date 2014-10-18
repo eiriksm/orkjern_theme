@@ -1,8 +1,10 @@
 var m = require('mithril');
 
+var Booter = require('./booter');
+
 var node = require('./controllers/node');
 var Index = require('./controllers/index');
-var taxonomy = require('./controllers/taxonomy');
+var Taxonomy = require('./controllers/taxonomy');
 
 module.exports = {
   appendCss: appendCss,
@@ -44,26 +46,26 @@ function init(window) {
   }
   var d = window.document;
   m.route.mode = 'pathname';
-  var routeConf = {};
-  var index = new Index(window);
-  routeConf['/'] = index;
-  routeConf['/node'] = index;
-  routeConf['/:alias'] = node;
-  routeConf['/node/:nid'] = node;
-  routeConf['/taxonomy/term/:tid'] = taxonomy;
-  m.route(d.getElementById('main-wrapper'), '/', routeConf);
-
-  // Hijack the links coming from the logo also.
-  var l = d.getElementById('logo');
-  if (l) {
-    l.onclick = function() {
-      // Only redirect if we are not already on the front page.
-      var url = m.route();
-      if (url !== '/') {
-        m.route('/');
-      }
-      return false;
-    };
+  app.controllers = {
+    index: new Index(app),
+    node: node,
+    taxonomy: new Taxonomy(app)
+  };
+  app.booter = new Booter(app);
+  app.booter.attach();
+  // Try to find comment count.
+  window.disqus_shortname = '{{ disqus_shortname }}';
+  // That is... unless there is no disqus set up for this site.
+  if (!window.disqus_shortname || !window.disqus_shortname.length) {
+    return app;
   }
+
+  window.DISQUSWIDGETS = undefined;
+  (function () {
+    var s = d.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + window.disqus_shortname + '.disqus.com/count.js';
+    (d.getElementsByTagName('HEAD')[0] || d.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
   return app;
 }

@@ -27,7 +27,7 @@ var disqus = function(window) {
       return;
     }
     // See if we can determine something about when this element is in sight.
-    if (window.scrollY && disqus_el.offsetTop && window.innerHeight) {
+    if (window.scrollY && disqus_el && disqus_el.offsetTop && window.innerHeight) {
       // Visible within 50 px.
       if (window.scrollY + window.innerHeight + 50 > disqus_el.offsetTop) {
         inited = true;

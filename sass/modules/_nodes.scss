@@ -54,6 +54,9 @@ article {
   }
 }
 .field-type-taxonomy-term-reference {
+  h3 {
+    display: none;
+  }
   li {
     display: inline-block;
     margin: 0;

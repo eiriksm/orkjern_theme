@@ -79,20 +79,27 @@
       <h2 class="node__title {{ title_attributes.class }}"{{ title_attributes|without('class') }}>
         <a href="{{ url }}" rel="bookmark">{{ label }}</a>
       </h2>
+    {% else %}
+      <h1 class="title" id="page-title">
+        {{ label }}
+      </h1>
     {% endif %}
-    {{ title_suffix }}
 
     {% if display_submitted %}
       <div class="node__meta">
-        <span>
-          {% trans %}Submitted by on {{ date }}{% endtrans %}
-        </span>
+        Submitted on {{ date }}
       </div>
     {% endif %}
   </header>
 
-  <div class="node__content clearfix {{ content_attributes.class }}"{{ content_attributes|without('class') }}>
-    {{ content|without('comment', 'links') }}
-  </div>
+  {% if not page %}
+    <div class="read-more"><a href="{{ url }}" rel="bookmark">Read more</a></div>
+    <a data-disqus-identifier="{{ url }}" href="{{ url }}"></a></div>
+  {% else %}
+    <div class="node__content clearfix {{ content_attributes.class }}"{{ content_attributes|without('class') }}>
+      {{ content|without('comment', 'links', 'field_tags') }}
+    </div>
+  {% endif %}
+  {{ content.field_tags }}
 
 </article>

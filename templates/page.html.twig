@@ -49,7 +49,7 @@
     <main id="content" class="column" role="main"><section class="section">
       <a id="main-content" tabindex="-1"></a>
       {{ title_prefix }}
-        {% if title %}
+        {% if title and not node %}
           <h1 class="title" id="page-title">
             {{ title }}
           </h1>
