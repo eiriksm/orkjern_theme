@@ -17,6 +17,14 @@ var IndexController = function(app) {
       };
       // Wait for a while to try to attach taxonomy listeners.
       setTimeout(linkAttach, 2);
+      var d = app.window.document;
+      window.DISQUSWIDGETS = undefined;
+      (function () {
+        var s = d.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + window.disqus_shortname + '.disqus.com/count.js';
+        (d.getElementsByTagName('HEAD')[0] || d.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
     });
     this.navigate = function(el) {
       app.booter.navigateEl(el, app.booter);
