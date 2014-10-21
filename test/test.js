@@ -79,7 +79,7 @@ describe('disqus.js', function() {
     var el = mockWindow.document.getElementsByTagName('script')[elNo];
     var p = m.route();
     if (!p) {
-      p = '';
+      p = mockWindow.location.pathname;
     }
     el.src.should.equal(mockWindow.location.protocol + '//' + mockWindow.disqus_shortname + '.disqus.com/embed.js?url=' + p);
     var hasReset = false;
