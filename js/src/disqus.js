@@ -6,7 +6,7 @@ var disqus = function(window) {
     }
     window.disqus_identifier = m.route();
     if (!window.disqus_identifier) {
-      window.disqus_identifier = window.location.href;
+      window.disqus_identifier = window.location.pathname;
     }
     if (window.disqus_loaded) {
       window.DISQUS.reset({

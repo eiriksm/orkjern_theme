@@ -77,7 +77,11 @@ describe('disqus.js', function() {
       elNo = 1;
     }
     var el = mockWindow.document.getElementsByTagName('script')[elNo];
-    el.src.should.equal(mockWindow.location.protocol + '//' + mockWindow.disqus_shortname + '.disqus.com/embed.js?url=' + m.route());
+    var p = m.route();
+    if (!p) {
+      p = '';
+    }
+    el.src.should.equal(mockWindow.location.protocol + '//' + mockWindow.disqus_shortname + '.disqus.com/embed.js?url=' + p);
     var hasReset = false;
     mockWindow.DISQUS = {
       page: {},
