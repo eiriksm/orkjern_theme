@@ -3,7 +3,7 @@
 module.exports = view;
 
 function view(ctrl) {
-  return <div class="content">
+  return <main id="content" class="column" role="main"><section class="section"><div class="content">
     <article class="node node--view-mode-full clearfix" about="/aa-cc" typeof="schema:Article">
       <h1 class="title" id="page-title">{ctrl.title()}</h1>
       <div class="node__meta">
@@ -18,5 +18,5 @@ function view(ctrl) {
       </div>
     </article>
     <div id="disqus_thread"></div>
-  </div>
+  </div></section></main>
 }

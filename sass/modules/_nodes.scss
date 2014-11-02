@@ -26,6 +26,7 @@ ul {
     margin-left: 1em;
   }
 }
+.views-field-created,
 .node__meta {
   font-size: .8em;
   color: $date-color;
@@ -53,6 +54,9 @@ article {
       background: darken($first, 10%);
     }
   }
+}
+.views-field-field-tags .views-label {
+  display: none;
 }
 .field-type-taxonomy-term-reference {
   h3 {
@@ -136,5 +140,10 @@ article {
     &:empty {
       display: none;
     }
+  }
+}
+.view-front-reset {
+  .views-row {
+    margin: 2em 0;
   }
 }
