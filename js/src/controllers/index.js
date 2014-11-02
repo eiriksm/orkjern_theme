@@ -19,6 +19,9 @@ var IndexController = function(app) {
       setTimeout(linkAttach, 2);
       var d = app.window.document;
       window.DISQUSWIDGETS = undefined;
+      if (!window.discus_shortname) {
+        return;
+      }
       (function () {
         var s = d.createElement('script'); s.async = true;
         s.type = 'text/javascript';
