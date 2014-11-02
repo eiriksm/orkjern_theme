@@ -19,7 +19,7 @@ var IndexController = function(app) {
       setTimeout(linkAttach, 2);
       var d = app.window.document;
       window.DISQUSWIDGETS = undefined;
-      if (!window.discus_shortname) {
+      if (!window.disqus_shortname) {
         return;
       }
       (function () {
