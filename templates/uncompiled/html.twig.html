@@ -9,6 +9,10 @@
     {{ page.head }}
     <title>{{ head_title }}</title>
   </head>
+  {% if is_admin %}
+    {{ page.styles }}
+    {{ page.scripts }}
+  {% endif %}
   {% if not has_css %}
     <!-- smoosh -->
     <link rel="stylesheet" href="../../build/app.min.css">
