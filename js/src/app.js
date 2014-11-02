@@ -63,6 +63,20 @@ function init(window) {
   }
 
   window.DISQUSWIDGETS = undefined;
+  // Need to attach some DOM elements to tell disqus what our comment paths
+  // are.
+  if (d.querySelectorAll && d.querySelectorAll('a[data-disqus-identifier]').length === 0) {
+    var links = d.querySelectorAll('.views-field-view-node a');
+    for (var i = 0, len = links.length; i < len; i++) {
+      var div = d.createElement('div');
+      div.className = 'comment-count';
+      var a = d.createElement('a');
+      a.href = links[i].pathname;
+      a.setAttribute('data-disqus-identifier', links[i].pathname);
+      div.appendChild(a);
+      links[i].parentNode.parentNode.parentNode.insertBefore(div, links[i].parentNode.parentNode.nextSibling);
+    }
+  }
   (function () {
     var s = d.createElement('script'); s.async = true;
     s.type = 'text/javascript';
