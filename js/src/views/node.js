@@ -17,6 +17,9 @@ function view(ctrl) {
         m("h2", ["Play"])
       ])
     ]),
+    m("div", {class:"twitter"}, [
+      "This blog is written by me, ", m("a", {href:"https://twitter.com/orkj"}, ["eiriksm. Feel free to say hi on twitter."])
+    ]),
     m("div", {id:"disqus_thread"})
   ])])])
 }

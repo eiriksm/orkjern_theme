@@ -17,6 +17,9 @@ function view(ctrl) {
         <h2>Play</h2>
       </div>
     </article>
+    <div class="twitter">
+      This blog is written by me, <a href="https://twitter.com/orkj">eiriksm. Feel free to say hi on twitter.</a>
+    </div>
     <div id="disqus_thread"></div>
   </div></section></main>
 }
