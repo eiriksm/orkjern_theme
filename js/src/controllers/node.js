@@ -60,11 +60,11 @@ app.controller = function() {
     ctrl.raw = data;
     setTimeout(function() {
       gist(window);
-    }, 1);
+    }, 200);
     window.disqus_shortname = '{{ disqus_shortname }}';
     setTimeout(function() {
       disqus(window);
-    }, 20);
+    }, 200);
   }, function error(data) {
     if (data === 404) {
       ctrl.title('404 not found!');

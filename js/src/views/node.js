@@ -3,7 +3,7 @@
 module.exports = view;
 
 function view(ctrl) {
-  return m("div", {class:"content"}, [
+  return m("main", {id:"content", class:"column", role:"main"}, [m("section", {class:"section"}, [m("div", {class:"content"}, [
     m("article", {class:"node node--view-mode-full clearfix", about:"/aa-cc", typeof:"schema:Article"}, [
       m("h1", {class:"title", id:"page-title"}, [ctrl.title()]),
       m("div", {class:"node__meta"}, [
@@ -17,6 +17,9 @@ function view(ctrl) {
         m("h2", ["Play"])
       ])
     ]),
+    m("div", {class:"twitter"}, [
+      "This blog is written by me, ", m("a", {href:"https://twitter.com/orkj"}, ["eiriksm. Feel free to say hi on twitter."])
+    ]),
     m("div", {id:"disqus_thread"})
-  ])
+  ])])])
 }

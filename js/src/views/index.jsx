@@ -16,5 +16,5 @@ function view(ctrl) {
   }
   return <main id="content" class="column" role="main"><section class="section"><div class="content">
     <div>{ ctrl.nodes.map ? ctrl.nodes.map(renderListItem) : ''}</div>
-  </div></section></main>
+  </div></main></section>
 }

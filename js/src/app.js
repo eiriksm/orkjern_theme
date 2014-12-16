@@ -2,6 +2,7 @@ var m = require('mithril');
 
 var Booter = require('./booter');
 var disqus = require('./disqus');
+var gist = require('./gist')
 
 var node = require('./controllers/node');
 var Index = require('./controllers/index');
@@ -55,6 +56,7 @@ function init(window) {
   app.booter = new Booter(app);
   app.booter.attach();
   disqus(app.window);
+  gist(app.window);
   // Try to find comment count.
   window.disqus_shortname = '{{ disqus_shortname }}';
   // That is... unless there is no disqus set up for this site.
@@ -63,6 +65,20 @@ function init(window) {
   }
 
   window.DISQUSWIDGETS = undefined;
+  // Need to attach some DOM elements to tell disqus what our comment paths
+  // are.
+  if (d.querySelectorAll && d.querySelectorAll('a[data-disqus-identifier]').length === 0) {
+    var links = d.querySelectorAll('.views-field-view-node a');
+    for (var i = 0, len = links.length; i < len; i++) {
+      var div = d.createElement('div');
+      div.className = 'comment-count';
+      var a = d.createElement('a');
+      a.href = links[i].pathname;
+      a.setAttribute('data-disqus-identifier', links[i].pathname);
+      div.appendChild(a);
+      links[i].parentNode.parentNode.parentNode.insertBefore(div, links[i].parentNode.parentNode.nextSibling);
+    }
+  }
   (function () {
     var s = d.createElement('script'); s.async = true;
     s.type = 'text/javascript';

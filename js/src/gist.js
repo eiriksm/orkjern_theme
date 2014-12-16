@@ -18,6 +18,10 @@ module.exports = function(window) {
   var gists = document.getElementsByTagName('gist');
   for (var i = 0, len = gists.length; i < len; i++) {
     var item = gists[i];
+    if (item.className && item.className.indexOf('processed') > -1) {
+      // This item is processed.
+      continue;
+    }
     gistIt(item, item.innerHTML);
   }
 };
