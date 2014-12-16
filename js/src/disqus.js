@@ -1,5 +1,8 @@
 var disqus = function(window) {
   var document = window.document;
+  if (typeof(m) === 'undefined') {
+    m = window.m;
+  }
   var init = function() {
     if (!window.disqus_shortname) {
       return;

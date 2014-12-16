@@ -68,6 +68,11 @@ describe('disqus.js', function() {
     de.offsetTop = 90;
     mockWindow.document.getElementsByTagName('body')[0].appendChild(de);
     mockWindow.disqus_shortname = 'testtest' + Math.random() * 1000;
+    mockWindow.m = {
+      route: function() {
+        mockWindow.location.href;
+      }
+    }
     disqus(mockWindow);
     mockWindow.scrollY = 1000;
     mockWindow.onscroll();
