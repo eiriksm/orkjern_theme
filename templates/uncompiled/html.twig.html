@@ -10,8 +10,8 @@
     <title>{{ head_title }}</title>
   </head>
   {% if is_admin %}
-    {{ page.styles }}
-    {{ page.scripts }}
+    {{ styles }}
+    {{ scripts }}
   {% endif %}
   {% if not has_css %}
     <!-- smoosh -->
@@ -23,7 +23,7 @@
       {{ 'Skip to main content'|t }}
     </a>
     {{ page_top }}
-    {{ page.content }}
+    {{ page }}
     {{ page_bottom }}
     {% if has_css %}
       <!-- smoosh -->

@@ -3,6 +3,7 @@
  * @file
  * page template for orkjern_theme.
 #}
+
 <div id="page-wrapper">
 
   <header id="header">
@@ -12,27 +13,25 @@
       </nav> <!-- /#secondary-menu -->
     {% endif %}
 
-    {% if logo %}
-      <div class="logo-wrapper">
-         <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home" id="logo">
-            <div class="svg-wrapper">
-               <svg version="1.1" id="cloudLightningFill" class="climacon climacon_cloudLightningFill" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="15 15 70 70" enable-background="new 15 15 70 70" xml:space="preserve">
-                  <g class="climacon_iconWrap climacon_iconWrap-cloudLightningFill">
-                      <g class="climacon_componentWrap climacon_componentWrap_cloud">
-                          <path class="climacon_component climacon_component-fill climacon_component-fill_cloud" fill="#FFFFFF" d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"></path>
-                      </g>
-                      <g class="climacon_wrapperComponent climacon_wrapperComponent-lightning">
-                          <polygon fill="yellow" class="climacon_component climacon_component-stroke climacon_component-stroke_lightning" points="48.001,56.641 57.999,56.641 52,66.641 58.999,66.641 46.001,83.639 49.601,70.641 43.001,70.641 "></polygon>
-                      </g>
-                  </g>
-              </svg>
-            </div>
-            {% if site_name %}
-              <div class="letters">{{ site_name }}</div>
-            {% endif %}
-         </a>
-      </div>
-    {% endif %}
+    <div class="logo-wrapper">
+       <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home" id="logo">
+          <div class="svg-wrapper">
+             <svg version="1.1" id="cloudLightningFill" class="climacon climacon_cloudLightningFill" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="15 15 70 70" enable-background="new 15 15 70 70" xml:space="preserve">
+                <g class="climacon_iconWrap climacon_iconWrap-cloudLightningFill">
+                    <g class="climacon_componentWrap climacon_componentWrap_cloud">
+                        <path class="climacon_component climacon_component-fill climacon_component-fill_cloud" fill="#FFFFFF" d="M59.943,61.639c4.418,0,8-3.582,8-7.998c0-4.417-3.582-8-8-8c-1.601,0-3.082,0.481-4.334,1.291c-1.23-5.316-5.973-9.29-11.665-9.29c-6.626,0-11.998,5.372-11.998,11.999c0,6.626,5.372,11.998,11.998,11.998C47.562,61.639,56.924,61.639,59.943,61.639z"></path>
+                    </g>
+                    <g class="climacon_wrapperComponent climacon_wrapperComponent-lightning">
+                        <polygon fill="yellow" class="climacon_component climacon_component-stroke climacon_component-stroke_lightning" points="48.001,56.641 57.999,56.641 52,66.641 58.999,66.641 46.001,83.639 49.601,70.641 43.001,70.641 "></polygon>
+                    </g>
+                </g>
+            </svg>
+          </div>
+          {% if site_name %}
+            <div class="letters">{{ site_name }}</div>
+          {% endif %}
+       </a>
+    </div>
 
     {{ page.header }}
 

@@ -94,16 +94,16 @@
 
   {% if not page %}
     <div class="read-more"><a href="{{ url }}" rel="bookmark">Read more</a></div>
-    <a data-disqus-identifier="{{ url }}" href="{{ url }}"></a></div>
+    <a data-disqus-identifier="{{ url }}" href="{{ url }}"></a>
   {% else %}
     <div class="node__content clearfix {{ content_attributes.class }}"{{ content_attributes|without('class') }}>
       {{ content|without('comment', 'links', 'field_tags') }}
     </div>
+    <div class="twitter">
+      This blog is written by me, <a href="https://twitter.com/orkj">eiriksm. Feel free to say hi on twitter.</a>
+    </div>
+    <div id="disqus_thread"></div>
   {% endif %}
-  <div class="twitter">
-    This blog is written by me, <a href="https://twitter.com/orkj">eiriksm. Feel free to say hi on twitter.</a>
-  </div>
   {{ content.field_tags }}
-  <div id="disqus_thread"></div>
 
 </article>

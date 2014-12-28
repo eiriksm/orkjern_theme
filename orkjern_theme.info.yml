@@ -2,6 +2,7 @@ name: Orkjern theme
 type: theme
 description: Orkjern.com goes drupal 8
 core: 8.x
+base theme: classy
 
 stylesheets:
   all:
