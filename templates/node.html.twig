@@ -94,7 +94,7 @@
 
   {% if not page %}
     <div class="read-more"><a href="{{ url }}" rel="bookmark">Read more</a></div>
-    <a data-disqus-identifier="{{ url }}" href="{{ url }}"></a>
+    <div class="comment-count"><a data-disqus-identifier="{{ url }}" href="{{ url }}"></a></div>
   {% else %}
     <div class="node__content clearfix {{ content_attributes.class }}"{{ content_attributes|without('class') }}>
       {{ content|without('comment', 'links', 'field_tags') }}
