@@ -1,4 +1,5 @@
 module.exports = http;
+var m = require('mithril');
 
 function http(url) {
   var xhrConfig = function(xhr) {

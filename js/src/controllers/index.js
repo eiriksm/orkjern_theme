@@ -3,6 +3,7 @@ var http = require('../http');
 var ctrl = {};
 
 var IndexController = function(app) {
+  var m = app.m;
   return function() {
     var window = app.window;
     var ctrl = this;

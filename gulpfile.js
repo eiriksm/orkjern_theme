@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
+//var uglify = require('gulp-uglify');
+var closureCompiler = require('gulp-closure-compiler');
 var minifyCSS = require('gulp-minify-css');
 var smoosher = require('gulp-smoosher');
 var rimraf = require('rimraf');
@@ -46,6 +47,12 @@ gulp.task('cachescript', function() {
 gulp.task('nocachescript', function() {
   return scriptTask('./js/nocache.js', 'nocache.min.js');
 });
+gulp.task('minifynocache', function() {
+  return minifier('nocache.min.js');
+});
+gulp.task('minifycache', function() {
+  return minifier('hascache.min.js');
+});
 gulp.task('css', function() {
   return gulp.src('sass/style.scss')
     .pipe(sass({
@@ -65,8 +72,20 @@ function scriptTask(path, filename) {
   return browserify(path)
     .bundle()
     .pipe(source(filename))
-    .pipe(streamify(uglify()))
     .pipe(gulp.dest('build/'));
+}
+
+function minifier(filename) {
+  return gulp.src('build/' + filename)
+    .pipe(streamify(
+      closureCompiler({
+        compilerPath: 'node_modules/closure-compiler/lib/vendor/compiler.jar',
+        fileName: filename,
+        compilerFlags: {
+          language_in: "ECMASCRIPT5"
+        }
+    })))
+    .pipe(gulp.dest('build'));
 }
 
 gulp.task('clean', function(cb) {
@@ -102,9 +121,10 @@ gulp.task('msx', function() {
     .pipe(gulp.dest('./js/src/views/'));
 });
 gulp.task('build', function(callback) {
-  runSequence('clean',
+  runSequence(
               'msx',
               ['cachescript', 'nocachescript', 'css'],
+              ['minifycache', 'minifynocache'],
               'inline',
               callback);
 });

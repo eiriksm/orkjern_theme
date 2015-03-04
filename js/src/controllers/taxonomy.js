@@ -3,6 +3,7 @@ var http = require('../http');
 var controller = {};
 
 var TaxController = function(app) {
+  var m = app.m;
   return function() {
     var ctrl = this;
     // Try to find the list of nodes.
