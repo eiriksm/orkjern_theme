@@ -1,3 +1,5 @@
+var m = require('mithril');
+
 var disqus = function(window) {
   var document = window.document;
   if (typeof(m) === 'undefined') {
