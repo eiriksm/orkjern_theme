@@ -18,7 +18,7 @@ describe('app.js functions', function() {
     test.nodeName.toLowerCase().should.equal('style');
     test.childNodes.length.should.equal(1);
     // So a little bit difference between jsdom and browser.
-    var property = '__nodeValue';
+    var property = '_data';
     if (typeof(window) != 'undefined') {
       property = 'wholeText';
     }
@@ -82,11 +82,16 @@ describe('disqus.js', function() {
       elNo = 1;
     }
     var el = mockWindow.document.getElementsByTagName('script')[elNo];
+    var m = require('mithril');
     var p = m.route();
     if (!p) {
       p = mockWindow.location.pathname;
     }
-    el.src.should.equal(mockWindow.location.protocol + '//' + mockWindow.disqus_shortname + '.disqus.com/embed.js?url=' + p);
+    var expectedProtocol = mockWindow.location.protocol;
+    if (mockWindow.location.protocol === 'about:') {
+      expectedProtocol = '';
+    }
+    el.src.should.equal(expectedProtocol + '//' + mockWindow.disqus_shortname + '.disqus.com/embed.js?url=' + p);
     var hasReset = false;
     mockWindow.DISQUS = {
       page: {},
