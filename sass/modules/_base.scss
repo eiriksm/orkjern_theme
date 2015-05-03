@@ -1,8 +1,11 @@
 body {
+  -webkit-font-smoothing: antialiased;
   font-family: Helvetica, Arial, sans-serif;
   color: $cloud-color;
   line-height: 1.5;
-  font-size: 20px;
+  font-size: 18px;
+  letter-spacing: -0.100000001490116px;
+  line-height: 1.5555555555555556em;
 }
 a {
   text-decoration: none;
