@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-//var uglify = require('gulp-uglify');
 var closureCompiler = require('gulp-closure-compiler');
 var minifyCSS = require('gulp-minify-css');
 var smoosher = require('gulp-smoosher');

@@ -60,10 +60,12 @@ article {
 .views-field-field-tags .views-label {
   display: none;
 }
+.field-node--field-tags,
 .field-type-taxonomy-term-reference {
   h3 {
     display: none;
   }
+  .field-item,
   li {
     display: inline-block;
     margin: 0;
