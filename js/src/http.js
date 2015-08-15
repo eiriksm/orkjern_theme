@@ -15,7 +15,7 @@ function http(url) {
   return m.request({
     method: 'GET',
     // Append a query string to make sure browser is not caching the URL.
-    url: '/' + url + '?json',
+    url: '/' + url + '?_format=hal_json',
     config: xhrConfig,
     extract: nonJsonErrors,
     // Wrap around the standard deserialize function to avoid that Mithril is
