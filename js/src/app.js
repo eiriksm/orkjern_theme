@@ -1,8 +1,9 @@
+'use strict';
 var m = require('mithril');
 
 var Booter = require('./booter');
 var disqus = require('./disqus');
-var gist = require('./gist')
+var gist = require('./gist');
 
 var node = require('./controllers/node');
 var Index = require('./controllers/index');
@@ -31,9 +32,14 @@ function appendCss(append, window) {
 function getLsOrKickOut(window){
   var ls = window.localStorage;
   if (!ls) {
+    // We have one exception... twitter on Android.
+    if (window.navigator.userAgent.match(/Twitter/)) {
+      return false;
+    }
     // Christ. No localstorage. The following is deserved:
     window.alert('Your browser is bad, and you should feel bad. You are not welcome here. You will be redirected to a place where you can upgrade your browser.');
-    return window.location.href = 'http://browsehappy.com/';
+    window.location.href = 'http://browsehappy.com/';
+    return false;
   }
   return ls;
 }
