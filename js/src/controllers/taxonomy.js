@@ -9,7 +9,7 @@ var TaxController = function(app) {
     // Try to find the list of nodes.
     this.nodes = m.prop([]);
     var tid = m.route.param('tid');
-    http('taxonomy/term/' + tid)
+    http('api/taxonomy/term/' + tid)
     .then(function(data) {
       data.map(function(item) {
         item.body = '';
