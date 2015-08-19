@@ -81,6 +81,9 @@ function MockWindow(forceFake) {
       hash: '',
       protocol: ''
     },
+    navigator: {
+      userAgent: 'Test agent'
+    },
     scrollY: 1000,
     innerHeight: 100,
     test: true,

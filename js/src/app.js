@@ -33,7 +33,7 @@ function getLsOrKickOut(window){
   var ls = window.localStorage;
   if (!ls) {
     // We have one exception... twitter on Android.
-    if (window.navigator.userAgent.match(/Twitter/)) {
+    if (window.navigator && window.navigator.userAgent && window.navigator.userAgent.match(/Twitter/)) {
       return false;
     }
     // Christ. No localstorage. The following is deserved:

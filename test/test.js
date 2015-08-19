@@ -1,3 +1,4 @@
+'use strict';
 var should = require('should');
 var app = require('../js/src/app');
 var mocker = require('./mock/mocker');
@@ -11,7 +12,7 @@ describe('Theme function exports', function() {
 });
 
 describe('app.js functions', function() {
-  it('Should return the expected value from appendCss', function() {
+  it('Should return the expected value from appendCss', function(done) {
     var mockWindow = new mocker.Window().window;
     var randomString1 = 'teststring' + Math.random() * 1000;
     var test = app.appendCss(randomString1, mockWindow);
@@ -23,6 +24,7 @@ describe('app.js functions', function() {
       property = 'wholeText';
     }
     test.childNodes[0][property].should.equal(randomString1);
+    done();
   });
 
   it('Should return the expected value from getLsOrKickOut', function() {
@@ -39,8 +41,23 @@ describe('app.js functions', function() {
     ls.should.equal(randomString);
     delete mockWindow.localStorage;
     ls = app.getLsOrKickOut(mockWindow);
-    ls.should.equal('http://browsehappy.com/');
+    mockWindow.location.href.should.equal('http://browsehappy.com/');
+    ls.should.equal(false);
     alerted.should.equal(true);
+    // Check that the twitter for android client is allowed.
+    delete mockWindow.location.href;
+    mockWindow.navigator = {
+      userAgent: 'Mozilla/5.0 (Linux bla bla) Mobile Safari/537.36 TwitterAndroid'
+    };
+    alerted = false;
+    ls = true;
+    ls = app.getLsOrKickOut(mockWindow);
+    // We should not get localStorage.
+    ls.should.equal(false);
+    // ...but we should also not complain about it.
+    alerted.should.equal(false);
+    // ...and a new location should not get set.
+    should(mockWindow.location.href).equal(undefined);
   });
 
   it('Should do the expected on init', function() {
@@ -70,9 +87,9 @@ describe('disqus.js', function() {
     mockWindow.disqus_shortname = 'testtest' + Math.random() * 1000;
     mockWindow.m = {
       route: function() {
-        mockWindow.location.href;
+        return mockWindow.location.href;
       }
-    }
+    };
     disqus(mockWindow);
     mockWindow.scrollY = 1000;
     mockWindow.onscroll();
@@ -130,6 +147,7 @@ describe('gist.js', function() {
 
     var ge = mockWindow.document.getElementsByTagName('gist')[0];
     var s = mockWindow.document.getElementsByTagName('script');
+    var se;
     for (var i = 0, len = s.length; i < len; i++) {
       var n = s[i];
       if (n.src.indexOf('github')) {
