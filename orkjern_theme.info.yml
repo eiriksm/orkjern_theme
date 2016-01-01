@@ -9,6 +9,7 @@ stylesheets:
     - css/style.css
 
 regions:
+  title: Title
   messages: Messages
   content: Content
   footer: Footer
