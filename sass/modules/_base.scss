@@ -42,10 +42,12 @@ p {
 }
 .logo-wrapper {
   text-align: center;
+  .letters a,
   .letters {
+    border: none;
     display: block;
     line-height: 1;
-    padding-top: 25px;
+    padding-top: 15px;
     padding-right: 52px;
     margin: auto;
     z-index: 1;
