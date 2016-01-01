@@ -93,7 +93,7 @@ gulp.task('clean', function(cb) {
 
 // Watch
 gulp.task('watch', function() {
-  gulp.watch(['js/**/*', 'sass/**/*'], ['build']);
+  gulp.watch(['js/**/*', 'sass/**/*', 'templates/uncompiled/*'], ['build']);
 });
 
 function msxTransform(name) {
