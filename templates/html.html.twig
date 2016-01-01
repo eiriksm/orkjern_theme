@@ -142,6 +142,12 @@ c||event;var g=(("load"===c.type?a.unwrapSuccess:a.unwrapError)||ga)(e(d(c.targe
 window:{});"undefined"!=typeof m&&null!==m&&m.exports?m.exports=g:"function"===typeof define&&define.amd&&define(function(){return g})},{}]},{},[1]);
 </script>
     {% endif %}
+    {% if is_admin %}
+      <css-placeholder token="{{ placeholder_token|raw }}">
+      <js-placeholder token="{{ placeholder_token|raw }}">
+      <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+
+    {% endif %}
     {% if ga_id %}
 
       <script type="text/javascript">

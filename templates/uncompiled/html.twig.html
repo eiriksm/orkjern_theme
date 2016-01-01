@@ -7,12 +7,8 @@
 <html{{ html_attributes }}>
   <head>
     {{ head }}
-    <title>{{ head_title }}</title>
+    <title>{{ head_title|safe_join(' | ') }}</title>
   </head>
-  {% if is_admin %}
-    {{ styles }}
-    {{ scripts }}
-  {% endif %}
   {% if not has_css %}
     <!-- smoosh -->
     <link rel="stylesheet" href="../../build/app.min.css">
@@ -33,6 +29,12 @@
       <!-- smoosh -->
       <script type="text/javascript" src="../../build/nocache.min.js"></script>
       <!-- endsmoosh -->
+    {% endif %}
+    {% if is_admin %}
+      <css-placeholder token="{{ placeholder_token|raw }}">
+      <js-placeholder token="{{ placeholder_token|raw }}">
+      <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+
     {% endif %}
     {% if ga_id %}
 
