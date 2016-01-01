@@ -59,5 +59,8 @@
       "chrome/latest",
       "firefox/latest"
     ]
+  },
+  "dependencies": {
+    "gulp-sass": "^2.1.1"
   }
 }
