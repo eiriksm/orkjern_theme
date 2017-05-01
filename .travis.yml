@@ -6,7 +6,7 @@ node_js:
 sudo: false
 matrix:
   allow_failures:
-    - nodejs: node
+    - node_js: node
 script:
   - make test-cov
   - make test-browser
