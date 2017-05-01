@@ -9,7 +9,7 @@ var IndexController = function(app) {
     var ctrl = this;
     // Try to find the list of nodes.
     this.nodes = m.prop([]);
-    http('node')
+    http('api/node')
     .then(function(data) {
       ctrl.nodes = data;
       // Attach event listeners on all taxonomy links.
