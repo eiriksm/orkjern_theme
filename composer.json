@@ -1,0 +1,13 @@
+{
+    "name": "eiriksm/orkjern_theme",
+    "description": "orkjern_theme used on orkjern.com",
+    "type": "drupal-theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eirik S. Morland",
+            "email": "eirik@morland.no"
+        }
+    ],
+    "require": {}
+}
