@@ -17,12 +17,10 @@ var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var karma = require('karma').server;
 
-/**
- * Run test once and exit
- */
-gulp.task('testscript', function (done) {
+gulp.task('testscript', function () {
   return scriptTask('./test/test.js', 'test.js');
 });
+
 gulp.task('test', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
