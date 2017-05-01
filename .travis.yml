@@ -4,6 +4,9 @@ node_js:
   - 4
   - 6
 sudo: false
+matrix:
+  allow_failures:
+    - nodejs: node
 script:
   - make test-cov
   - make test-browser
