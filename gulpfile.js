@@ -78,7 +78,7 @@ function minifier(filename) {
   return gulp.src('build/' + filename)
     .pipe(streamify(
       closureCompiler({
-        compilerPath: 'node_modules/closure-compiler/lib/vendor/compiler.jar',
+        compilerPath: 'node_modules/gulp-closure-compiler/node_modules/google-closure-compiler/compiler.jar',
         fileName: filename,
         compilerFlags: {
           language_in: "ECMASCRIPT5"
