@@ -81,8 +81,10 @@ describe('disqus.js', function() {
   it('Should do as expected to the window', function() {
     var mockWindow = new mocker.Window().window;
     var de = mockWindow.document.createElement('div');
-    if (de.offsetTop) {
+    try {
       de.offsetTop = 90;
+    }
+    catch (e) {
     }
     de.id = 'disqus_thread';
     mockWindow.document.getElementsByTagName('body')[0].appendChild(de);
