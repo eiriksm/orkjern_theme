@@ -9,6 +9,7 @@
     {{ head }}
     <title>{{ head_title|safe_join(' | ') }}</title>
   </head>
+  {{ tag_list }}
   {% if not has_css %}
     <!-- smoosh -->
     <link rel="stylesheet" href="../../build/app.min.css">

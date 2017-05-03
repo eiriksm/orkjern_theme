@@ -1,7 +1,21 @@
 language: node_js
 node_js:
-  - "0.10"
+  - node
+  - 4
+  - 6
 sudo: false
+matrix:
+  allow_failures:
+    - node_js: node
 script:
   - make test-cov
   - make test-browser
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8

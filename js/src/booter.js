@@ -26,7 +26,7 @@ function Booter(app) {
     return false;
   };
 
-  var l = d.getElementById('logo');
+  var l = d.querySelector('.site-name a');
   if (l) {
     l.onclick = function() {
       // Only redirect if we are not already on the front page.

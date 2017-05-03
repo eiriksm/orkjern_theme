@@ -17,12 +17,10 @@ var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var karma = require('karma').server;
 
-/**
- * Run test once and exit
- */
-gulp.task('testscript', function (done) {
+gulp.task('testscript', function () {
   return scriptTask('./test/test.js', 'test.js');
 });
+
 gulp.task('test', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
@@ -78,7 +76,7 @@ function minifier(filename) {
   return gulp.src('build/' + filename)
     .pipe(streamify(
       closureCompiler({
-        compilerPath: 'node_modules/closure-compiler/lib/vendor/compiler.jar',
+        compilerPath: 'node_modules/gulp-closure-compiler/node_modules/google-closure-compiler/compiler.jar',
         fileName: filename,
         compilerFlags: {
           language_in: "ECMASCRIPT5"

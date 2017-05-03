@@ -13,4 +13,19 @@ function orkjern_theme_preprocess_html(&$vars) {
   if ($disqus_shortname) {
     $vars['disqus_shortname'] = $disqus_shortname;
   }
+  $tags = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->loadByProperties([
+      'vid' => 'tags',
+    ]);
+  $json_tags = [];
+  foreach ($tags as $tag) {
+    $json_tags[$tag->id()] = $tag->label();
+  }
+  $vars['tag_list'] = [
+    '#template' => "<script>var orkjernTags = JSON.parse('" . json_encode($json_tags) . "');</script>",
+    '#type' => 'inline_template',
+    '#context' => [],
+  ];
+
 }

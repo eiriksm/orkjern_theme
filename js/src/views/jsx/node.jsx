@@ -4,6 +4,11 @@ var m = require('mithril');
 module.exports = view;
 
 function view(ctrl) {
+
+  var terms = ctrl.tags().map(function(n) {
+    return <li><a href="/taxonomy/term/{n.tid}" hreflang="en">{n.title}</a></li>
+  });
+
   return <main id="content" class="column" role="main"><section class="section"><div class="content">
     <article class="node node--view-mode-full clearfix" about="/aa-cc" typeof="schema:Article">
       <h1 class="title" id="page-title">{ctrl.title()}</h1>
@@ -16,6 +21,11 @@ function view(ctrl) {
       <div class={ctrl.imageClass() + ' image'} onclick={ctrl.toggleImageClass}>
         <img src={ctrl.image()} />
         <h2>Play</h2>
+      </div>
+      <div class="clearfix field-type-taxonomy-term-reference">
+        <ul class="links field-items">
+          {terms}
+        </ul>
       </div>
     </article>
     <div class="twitter">

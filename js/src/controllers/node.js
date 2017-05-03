@@ -11,6 +11,7 @@ app.controller = function() {
   this.title = m.prop('');
   this.body = m.prop('Loading...');
   this.raw = m.prop({});
+  this.tags = m.mrop([]);
   this.image = m.prop('about:blank');
   ctrl.submitted = m.prop('');
   var image;
@@ -46,8 +47,9 @@ app.controller = function() {
     ctrl.submitted('Submitted ' + cr.toLocaleDateString());
     // Try to find some fields we need.
     // @todo. This should be handled better, and without a loop.
+    var tags = [];
     for (var prop in data._links) {
-      if (prop.indexOf('image') < 1) {
+      if (prop.indexOf('image') < 1 || prop.indexOf('tags') < 1) {
         continue;
       }
       if (data._links.hasOwnProperty(prop)) {
@@ -55,7 +57,23 @@ app.controller = function() {
         if (prop.indexOf('image')) {
           image = data._links[prop][0].href;
         }
+        if (prop.indexOf('tags')) {
+          var link = data._links[prop][0].href;
+          var tid = link.substring(link.lastIndexOf('/') + 1, link.lastIndexOf('?'));
+          if (!orkjernTags[tid]) {
+            // Abort!
+            continue;
+          }
+          // Now, create the object we need.
+          tags.push({
+            tid: tid,
+            title: orkjernTags[tid]
+          });
+        }
       }
+    }
+    if (tags.length) {
+      ctrl.tags(tags);
     }
     ctrl.raw = data;
     setTimeout(function() {
