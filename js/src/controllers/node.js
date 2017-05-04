@@ -11,7 +11,7 @@ app.controller = function() {
   this.title = m.prop('');
   this.body = m.prop('Loading...');
   this.raw = m.prop({});
-  this.tags = m.mrop([]);
+  this.tags = m.prop([]);
   this.image = m.prop('about:blank');
   ctrl.submitted = m.prop('');
   var image;
