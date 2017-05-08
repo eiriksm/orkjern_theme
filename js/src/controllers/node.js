@@ -49,26 +49,28 @@ app.controller = function() {
     // @todo. This should be handled better, and without a loop.
     var tags = [];
     for (var prop in data._links) {
-      if (prop.indexOf('image') < 1 || prop.indexOf('tags') < 1) {
+      if (prop.indexOf('image') < 1 && prop.indexOf('tags') < 1) {
         continue;
       }
       if (data._links.hasOwnProperty(prop)) {
         // We are looking for these 2 fields:
-        if (prop.indexOf('image')) {
+        if (prop.indexOf('image') > 0) {
           image = data._links[prop][0].href;
         }
-        if (prop.indexOf('tags')) {
-          var link = data._links[prop][0].href;
-          var tid = link.substring(link.lastIndexOf('/') + 1, link.lastIndexOf('?'));
-          if (!orkjernTags[tid]) {
-            // Abort!
-            continue;
+        if (prop.indexOf('tags') > 0) {
+          for (var i = 0, len = data._links[prop].length; i < len; i++) {
+            var link = data._links[prop][i].href;
+            var tid = link.substring(link.lastIndexOf('/') + 1, link.lastIndexOf('?'));
+            if (!orkjernTags[tid]) {
+              // Abort!
+              continue;
+            }
+            // Now, create the object we need.
+            tags.push({
+              tid: tid,
+              title: orkjernTags[tid]
+            });
           }
-          // Now, create the object we need.
-          tags.push({
-            tid: tid,
-            title: orkjernTags[tid]
-          });
         }
       }
     }

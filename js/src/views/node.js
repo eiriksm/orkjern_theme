@@ -6,7 +6,8 @@ module.exports = view;
 function view(ctrl) {
 
   var terms = ctrl.tags().map(function(n) {
-    return {tag: "li", attrs: {}, children: [{tag: "a", attrs: {href:"/taxonomy/term/{n.tid}",hreflang:"en"}, children: [n.title]}]}
+    var href = '/taxonomy/term/' + n.tid;
+    return ({tag: "li", attrs: {}, children: [{tag: "a", attrs: {href:href,hreflang:"en"}, children: [n.title," "]}, " "]} );
   });
 
   return {tag: "main", attrs: {id:"content",class:"column",role:"main"}, children: [{tag: "section", attrs: {class:"section"}, children: [{tag: "div", attrs: {class:"content"}, children: [

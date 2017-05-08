@@ -6,7 +6,8 @@ module.exports = view;
 function view(ctrl) {
 
   var terms = ctrl.tags().map(function(n) {
-    return <li><a href="/taxonomy/term/{n.tid}" hreflang="en">{n.title}</a></li>
+    var href = '/taxonomy/term/' + n.tid;
+    return (<li><a href={href} hreflang="en">{n.title} </a> </li> );
   });
 
   return <main id="content" class="column" role="main"><section class="section"><div class="content">
