@@ -4,6 +4,7 @@
   "description": "Theme used for orkjern.com",
   "main": "index.js",
   "scripts": {
+    "watch": "./node_modules/.bin/gulp watch",
     "test": "./node_modules/mocha/bin/mocha"
   },
   "repository": {
