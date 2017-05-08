@@ -1,10 +1,13 @@
-<div class="clearfix field-type-taxonomy-term-reference">
-  {% if not label_hidden %}
-    <h3{{ title_attributes }}>{{ label }}: </h3>
-  {% endif %}
-  <ul{{ content_attributes.addClass('links', 'field-items') }}>
-    {% for item in items %}
-      <li{{ item.attributes }}>{{ item.content }}</li>
-    {% endfor %}
-  </ul>
-</div>
+{% spaceless %}
+  <div class="clearfix field-type-taxonomy-term-reference">
+    {% if not label_hidden %}
+      <h3{{ title_attributes }}>{{ label }}: </h3>
+    {% endif %}
+    <ul{{ content_attributes.addClass('links', 'field-items') }}>
+      {% for item in items %}
+        <li{{ item.attributes }}>{{ item.content }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  eirik
+{% endspaceless %}
