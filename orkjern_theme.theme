@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Orkjern theme theme file.
+ */
+
+/**
  * Implements hook_preprocess_html().
  */
 function orkjern_theme_preprocess_html(&$vars) {
