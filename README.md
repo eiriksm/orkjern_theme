@@ -1,5 +1,7 @@
 orkjern_theme
 =============
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/eiriksm/orkjern_theme.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/eiriksm/orkjern_theme.svg?branch=master)](https://travis-ci.org/eiriksm/orkjern_theme)
 [![devDependency Status](https://david-dm.org/eiriksm/orkjern_theme/dev-status.svg)](https://david-dm.org/eiriksm/orkjern_theme#info=devDependencies)
 
