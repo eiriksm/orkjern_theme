@@ -40,13 +40,25 @@ function Booter(app) {
 }
 
 Booter.prototype.attach = function(sel) {
+  console.log(sel)
   var selector = sel || '#main-wrapper a';
   // Hijack all links content links.
   var d = this.window.document;
   if (d && d.querySelectorAll) {
     var links = d.querySelectorAll(selector);
     for (var i = 0, len = links.length; i < len ; i++) {
-      links[i].onclick = this.startFunction;
+      var internal = false;
+      var internalDomain = window.location.protocol + '//' + window.location.hostname;
+      if (links[i].href.indexOf(internalDomain) === 0) {
+        internal = true;
+      }
+      if (links[i].href.indexOf('/') === 0) {
+        internal = true;
+      }
+      if (internal) {
+        links[i].onclick = this.startFunction;
+      }
+
     }
   }
 
