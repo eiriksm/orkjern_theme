@@ -96,7 +96,7 @@ function MockWindow(forceFake) {
       }
     }
   };
-  if (!forceFake && typeof(window) != 'undefined') {
+  if (!forceFake && typeof(window) !== 'undefined') {
     this.window = window;
   }
   else if (typeof(window) === 'undefined') {
@@ -104,10 +104,10 @@ function MockWindow(forceFake) {
     var r = {
       r: require
     };
-    var jsdom = r.r('jsdom').jsdom;
-    var doc = jsdom();
+    var JSDOM = r.r('jsdom').JSDOM;
+    var doc = new JSDOM();
     var loc = this.window.location;
-    this.window = doc.parentWindow;
+    this.window = doc.window;
     this.window.location = loc;
     this.window.test = true;
   }

@@ -18,12 +18,7 @@ describe('app.js functions', function() {
     var test = app.appendCss(randomString1, mockWindow);
     test.nodeName.toLowerCase().should.equal('style');
     test.childNodes.length.should.equal(1);
-    // So a little bit difference between jsdom and browser.
-    var property = '_data';
-    if (typeof(window) != 'undefined') {
-      property = 'wholeText';
-    }
-    test.childNodes[0][property].should.equal(randomString1);
+    test.firstChild.nodeValue.should.equal(randomString1);
     done();
   });
 
@@ -82,7 +77,9 @@ describe('disqus.js', function() {
     var mockWindow = new mocker.Window().window;
     var de = mockWindow.document.createElement('div');
     try {
-      de.offsetTop = 90;
+      Object.defineProperty(de, 'offsetTop', {
+        value: 90
+      })
     }
     catch (e) {
     }
