@@ -30,7 +30,9 @@ gulp.task('test', function (done) {
 
 gulp.task('inline', function() {
   return gulp.src('templates/uncompiled/*.html')
-    .pipe(smoosher())
+    .pipe(smoosher({
+      base: '../../../'
+    }))
     .pipe(rename(function (path) {
       path.basename = path.basename.replace('twig', 'html');
       path.extname = ".twig";
@@ -76,7 +78,7 @@ function minifier(filename) {
   return gulp.src('build/' + filename)
     .pipe(streamify(
       closureCompiler({
-        compilerPath: 'node_modules/gulp-closure-compiler/node_modules/google-closure-compiler/compiler.jar',
+        compilerPath: 'node_modules/google-closure-compiler/compiler.jar',
         fileName: filename,
         compilerFlags: {
           language_in: "ECMASCRIPT5"

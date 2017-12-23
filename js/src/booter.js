@@ -40,7 +40,6 @@ function Booter(app) {
 }
 
 Booter.prototype.attach = function(sel) {
-  console.log(sel)
   var selector = sel || '#main-wrapper a';
   // Hijack all links content links.
   var d = this.window.document;
@@ -63,15 +62,15 @@ Booter.prototype.attach = function(sel) {
 }
 
 Booter.prototype.navigate = function(url) {
-  var win = this.window;
+  var win = this.window
   if (!this.booted && win && win.document) {
     this.m.route(win.document.getElementById('main-wrapper'), url, this.routeConf);
-    this.booted = true;
+    this.booted = true
   }
-  this.m.route(url);
+  this.m.route(url)
 };
 Booter.prototype.navigateEl = function(el, b) {
-  var url = el.getAttribute('href');
+  var url = el.getAttribute('href')
   b.navigate(url);
   return false;
 };
