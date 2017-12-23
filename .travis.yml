@@ -8,8 +8,11 @@ matrix:
   allow_failures:
     - node_js: node
 script:
-  - make test-cov
-  - make test-browser
+  - npm test
+  - npm run test-browser
+after_script:
+  - npm run coverage
+  - cat coverage/karma/*/lcov.info coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js > /dev/null 2>&1
 env:
   - CXX=g++-4.8
 addons:

@@ -58,11 +58,10 @@ Booter.prototype.attach = function(sel) {
       if (internal) {
         links[i].onclick = this.startFunction;
       }
-
     }
   }
+}
 
-};
 Booter.prototype.navigate = function(url) {
   var win = this.window;
   if (!this.booted && win && win.document) {
