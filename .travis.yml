@@ -1,8 +1,8 @@
 language: node_js
 node_js:
   - node
-  - 4
   - 6
+  - 8
 sudo: false
 matrix:
   allow_failures:
